@@ -186,7 +186,6 @@ I would like to thank... <a href="https://www.microverse.org/?gclid=CjwKCAiArY2f
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
