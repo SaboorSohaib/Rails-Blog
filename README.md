@@ -69,6 +69,7 @@
 
 - We can add, remove, update and display blogs.
 - It has user authentication.
+- It has user authorization.
 - It is well designed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
