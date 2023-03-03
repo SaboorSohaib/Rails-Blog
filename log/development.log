@@ -1,0 +1,9 @@
+  [1m[35m (1552.7ms)[0m  [1m[35mCREATE DATABASE "blogger_development" ENCODING = 'unicode'[0m
+  [1m[35m (236.8ms)[0m  [1m[35mCREATE DATABASE "blogger_test" ENCODING = 'unicode'[0m
+Started GET "/" for 127.0.0.1 at 2023-03-03 19:07:03 +0430
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/sohaib/.rvm/gems/ruby-3.2.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/sohaib/.rvm/gems/ruby-3.2.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 23.6ms | Allocations: 605)
+Completed 200 OK in 93ms (Views: 42.8ms | ActiveRecord: 0.0ms | Allocations: 5021)
+
+
