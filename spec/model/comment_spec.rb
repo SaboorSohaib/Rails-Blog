@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe 'Comment Model Test' do
-    subject { Comment.new(text: 'Good Job', author_id: 2, posts_id: 2) }
+    subject { Comment.new(text: 'Good Job', author_id: 2, post_id: 2) }
     before { subject.save }
 
     it 'The comment should not be blank' do
@@ -20,13 +20,13 @@ RSpec.describe Comment, type: :model do
       expect(id).to be == 2
     end
 
-    it 'The posts_id should be number' do
-      subject.posts_id = 'bbb'
+    it 'The post_id should be number' do
+      subject.post_id = 'bbb'
       expect(subject).to_not be_valid
     end
 
-    it 'The posts_id should be integer' do
-      id = subject.posts_id = 2
+    it 'The post_id should be integer' do
+      id = subject.post_id = 2
       expect(id).to be == 2
     end
   end
