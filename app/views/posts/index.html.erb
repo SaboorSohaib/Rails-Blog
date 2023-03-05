@@ -4,24 +4,23 @@
 <%@user.posts.each do |post| %>
   <%= link_to user_path(@user, post) do %>
       <%= render "post", post:post %>
-
         <div> 
-            <h3>
-                <span>Comments</span>
-                <span>for Post: </span>
-                <span><%="#{post.title}"%> </span>
-            </h3>
-            <div class="post-comment">
-                <%post.most_recent_comment.each do |comment|%>
+          <h3>
+            <span>Comments</span>
+            <span>for Post: </span>
+            <span><%="#{post.title}"%> </span>
+          </h3>
+          <div class="post-comment">
+              <%post.most_recent_comment.each do |comment|%>
                 <div>
-                    <p>
-                        <span><strong><%= comment.author_id %></strong></span>
-                        <span><%= comment.text %></span>
-                    </p>
+                  <p>
+                      <span><strong><%= comment.author_id %></strong></span>
+                      <span><%= comment.text %></span>
+                  </p>
                 </div>
-                <%end%>
-            </div>
+              <%end%>
+          </div>
         </div>
-        <%end%>
-    <%end%>
+      <%end%>
+<%end%>
 </section>
