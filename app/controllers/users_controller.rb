@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @id = params[:id]
+    @users = User.all
   end
 
   def show
-    @id = params[:user_id]
+    @user = User.find(params[:user_id])
   end
 end
