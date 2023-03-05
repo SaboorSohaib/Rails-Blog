@@ -2,8 +2,8 @@
 <% content_for :title, "#{@user.name}'s Posts" %>
 <%= render "users/user", user: @user %>
 <%@user.posts.each do |post| %>
-    <%= link_to user_path(@user, post) do %>
-        <%= render "post", post:post %>
+  <%= link_to user_path(@user, post) do %>
+      <%= render "post", post:post %>
 
         <div> 
             <h3>
