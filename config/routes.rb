@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "users#index"
   get '/posts/new', to: 'posts#new', as: 'create_post'
+  post '/posts/new', to: 'posts#create'
 
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :show]
