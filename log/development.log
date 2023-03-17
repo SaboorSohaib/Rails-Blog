@@ -1085,3 +1085,550 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 59ms (Views: 28.0ms | ActiveRecord: 14.4ms | Allocations: 11478)
 
 
+Started GET "/" for 127.0.0.1 at 2023-03-05 15:56:25 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/_user.html.erb (Duration: 1.8ms | Allocations: 492)
+  Rendered users/index.html.erb (Duration: 36.8ms | Allocations: 6130)
+Completed 200 OK in 59ms (Views: 31.1ms | ActiveRecord: 9.0ms | Allocations: 11562)
+
+
+Started GET "/" for 127.0.0.1 at 2023-03-05 16:07:55 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/_user.html.erb (Duration: 1.1ms | Allocations: 490)
+  Rendered users/index.html.erb within layouts/application (Duration: 20.1ms | Allocations: 6128)
+  Rendered layout layouts/application.html.erb (Duration: 784.6ms | Allocations: 73644)
+Completed 200 OK in 798ms (Views: 781.7ms | ActiveRecord: 5.8ms | Allocations: 78920)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-03-05 16:08:01 +0430
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 1.0ms | Allocations: 105)
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 0.7ms | Allocations: 181)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 44.9ms | Allocations: 9251)
+  Rendered layout layouts/application.html.erb (Duration: 50.8ms | Allocations: 10392)
+Completed 200 OK in 64ms (Views: 44.0ms | ActiveRecord: 9.2ms | Allocations: 13002)
+
+
+Started GET "/users/1/posts" for 127.0.0.1 at 2023-03-05 16:08:04 +0430
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 1.0ms | Allocations: 142)
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 16)
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 1], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 2], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 3], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 4], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 58.7ms | Allocations: 10498)
+  Rendered layout layouts/application.html.erb (Duration: 62.2ms | Allocations: 11679)
+Completed 200 OK in 71ms (Views: 55.9ms | ActiveRecord: 10.1ms | Allocations: 12804)
+
+
+Started GET "/" for 127.0.0.1 at 2023-03-05 16:19:24 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/_user.html.erb (Duration: 1.7ms | Allocations: 490)
+  Rendered users/index.html.erb within layouts/application (Duration: 32.7ms | Allocations: 6128)
+  Rendered layout layouts/application.html.erb (Duration: 102.8ms | Allocations: 25642)
+Completed 200 OK in 121ms (Views: 98.4ms | ActiveRecord: 8.5ms | Allocations: 30916)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-03-05 16:19:28 +0430
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.4ms | Allocations: 105)
+  [1m[36mPost Load (1.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 0.7ms | Allocations: 181)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 48.0ms | Allocations: 10279)
+  Rendered layout layouts/application.html.erb (Duration: 48.4ms | Allocations: 10367)
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 8.7ms | Allocations: 12978)
+
+
+  
+ActionView::Template::Error (undefined method `posts_new_path' for #<ActionView::Base:0x0000000000aed8>):
+    16:   <%= link_to user_posts_path(@user) do %>
+    17:     <button type="button" class="posts-btn">See all Posts</button>
+    18:   <%end%>
+    19:   <%= link_to posts_new_path(@user) do %>
+    20:     <button type="button" class="add-post-btn">Create Post</button>
+    21:   <%end%>
+    22: </section>
+  
+app/views/users/show.html.erb:19
+Started GET "/" for 127.0.0.1 at 2023-03-16 18:44:41 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (57.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (88.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/_user.html.erb (Duration: 20.4ms | Allocations: 490)
+  Rendered users/index.html.erb within layouts/application (Duration: 222.1ms | Allocations: 6478)
+  Rendered layout layouts/application.html.erb (Duration: 810.7ms | Allocations: 73403)
+Completed 200 OK in 918ms (Views: 664.9ms | ActiveRecord: 154.4ms | Allocations: 80802)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-03-16 18:44:48 +0430
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.5ms | Allocations: 105)
+  [1m[36mPost Load (47.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 22.1ms | Allocations: 181)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 200.9ms | Allocations: 12865)
+  Rendered layout layouts/application.html.erb (Duration: 205.4ms | Allocations: 14027)
+Completed 200 OK in 248ms (Views: 154.0ms | ActiveRecord: 53.7ms | Allocations: 17046)
+
+
+Started GET "/users/1/posts" for 127.0.0.1 at 2023-03-16 18:44:53 +0430
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.7ms | Allocations: 142)
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 16)
+  [1m[36mComment Load (60.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 1], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 2], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 3], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (1.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 4], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 186.9ms | Allocations: 10948)
+  Rendered layout layouts/application.html.erb (Duration: 190.3ms | Allocations: 12137)
+Completed 200 OK in 200ms (Views: 125.0ms | ActiveRecord: 69.3ms | Allocations: 13262)
+
+
+Started GET "/posts/new.1" for 127.0.0.1 at 2023-03-16 18:45:02 +0430
+Processing by PostsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 120.8ms | Allocations: 3399)
+  Rendered layout layouts/application.html.erb (Duration: 124.4ms | Allocations: 4370)
+Completed 200 OK in 127ms (Views: 125.8ms | ActiveRecord: 0.0ms | Allocations: 4618)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-16 18:46:02 +0430
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for PostsController):
+  
+actionpack (7.0.4.2) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.2) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.2) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.2) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.2) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.2) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.2) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.2) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.2) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.2) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.2) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.2) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.2) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.2) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.2) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.2) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.2) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.2) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2023-03-17 21:57:45 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (35.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (59.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/_user.html.erb (Duration: 1.5ms | Allocations: 490)
+  Rendered users/index.html.erb within layouts/application (Duration: 197.5ms | Allocations: 6127)
+  Rendered layout layouts/application.html.erb (Duration: 360.9ms | Allocations: 25795)
+Completed 200 OK in 404ms (Views: 219.1ms | ActiveRecord: 146.7ms | Allocations: 31073)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-03-17 21:57:51 +0430
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.6ms | Allocations: 105)
+  [1m[36mPost Load (56.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 22.8ms | Allocations: 181)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 136.2ms | Allocations: 9221)
+  Rendered layout layouts/application.html.erb (Duration: 139.2ms | Allocations: 10367)
+Completed 200 OK in 149ms (Views: 77.2ms | ActiveRecord: 63.7ms | Allocations: 12977)
+
+
+Started GET "/users/1/posts/2" for 127.0.0.1 at 2023-03-17 21:57:55 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 13.5ms | Allocations: 1593)
+  Rendered posts/show.html.erb within layouts/application (Duration: 38.1ms | Allocations: 2018)
+  Rendered layout layouts/application.html.erb (Duration: 38.8ms | Allocations: 2108)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 1.4ms | Allocations: 4302)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div>
+  <div>
+      <h3><%= post.title %> by <%=post.author_id%></h3>
+        <div>
+          <div>Comments: <%= post.comments_counter%></div>
+          <div>Likes: <%= post.likes_counter%></div>
+      </div>
+  </div>
+  <div><%= post.text %><div>
+  <%= form-with model: @like, url: like_path, method: :post do |f|%>
+    <%= f.submit "Like" %>
+  <%end%>
+</div>
+):
+1:    <div>
+2:      <div>
+3:          <h3><%= post.title %> by <%=post.author_id%></h3>
+4:            <div>
+5:              <div>Comments: <%= post.comments_counter%></div>
+6:              <div>Likes: <%= post.likes_counter%></div>
+7:          </div>
+8:      </div>
+9:      <div><%= post.text %><div>
+10:      <%= form-with model: @like, url: like_path, method: :post do |f|%>
+11:        <%= f.submit "Like" %>
+12:      <%end%>
+13:    </div>
+  
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/show.html.erb:2
+Started GET "/users/1/posts" for 127.0.0.1 at 2023-03-17 21:57:56 +0430
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.6ms | Allocations: 142)
+  [1m[36mPost Load (1.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 16)
+  [1m[36mComment Load (97.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 1], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (1.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 2], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 3], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (1.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 4], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 161.8ms | Allocations: 25057)
+  Rendered layout layouts/application.html.erb (Duration: 165.1ms | Allocations: 26252)
+Completed 200 OK in 191ms (Views: 52.7ms | ActiveRecord: 123.6ms | Allocations: 30216)
+
+
+Started GET "/posts/new.1" for 127.0.0.1 at 2023-03-17 21:58:04 +0430
+Processing by PostsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 48.8ms | Allocations: 2251)
+  Rendered layout layouts/application.html.erb (Duration: 52.6ms | Allocations: 3237)
+Completed 200 OK in 55ms (Views: 53.6ms | ActiveRecord: 0.0ms | Allocations: 3595)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 21:58:28 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 878)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'Title' for Post.):
+  
+app/controllers/posts_controller.rb:12:in `create'
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 21:58:48 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce45e6dfc8>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 13.9ms | Allocations: 8670)
+
+
+  
+NoMethodError (undefined method `AuthorId=' for #<Post id: nil, author_id: nil, title: nil, text: nil, comments_counter: nil, likes_counter: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/posts_controller.rb:13:in `create'
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:00:03 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce460a2e60>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 13.1ms | Allocations: 8522)
+
+
+  
+NoMethodError (undefined method `AuthorId=' for #<Post id: nil, author_id: nil, title: nil, text: nil, comments_counter: nil, likes_counter: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/posts_controller.rb:13:in `create'
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:00:39 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce45e7a840>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.5ms | Allocations: 1421)
+
+
+  
+NoMethodError (undefined method `AuthorId=' for #<Post id: nil, author_id: nil, title: nil, text: nil, comments_counter: nil, likes_counter: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/posts_controller.rb:13:in `create'
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:00:51 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce460941a8>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 11.3ms | Allocations: 8553)
+
+
+  
+NoMethodError (undefined method `like_counter=' for #<Post id: nil, author_id: 1, title: nil, text: nil, comments_counter: nil, likes_counter: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/posts_controller.rb:14:in `create'
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:31 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce461aa3d0>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 56ms (ActiveRecord: 13.2ms | Allocations: 12599)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:33 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce4607cc60>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 27ms (ActiveRecord: 1.5ms | Allocations: 3681)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:34 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce55b2abf8>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 22ms (ActiveRecord: 2.0ms | Allocations: 3684)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:35 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce45e91ea0>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 18ms (ActiveRecord: 1.5ms | Allocations: 3675)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:35 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce45d44750>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 17ms (ActiveRecord: 1.7ms | Allocations: 3672)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:01:36 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007fce45e7eb20>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS/JAVASCRIPT."}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 24ms (ActiveRecord: 2.8ms | Allocations: 3662)
+
+
+Started GET "/posts/new.1" for 127.0.0.1 at 2023-03-17 22:02:12 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 17.9ms | Allocations: 2808)
+  Rendered layout layouts/application.html.erb (Duration: 89.1ms | Allocations: 22145)
+Completed 200 OK in 137ms (Views: 92.0ms | ActiveRecord: 7.2ms | Allocations: 32646)
+
+
+Started POST "/posts/new" for 127.0.0.1 at 2023-03-17 22:02:22 +0430
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS"}, "commit"=>"Create Post"}
+[31mUnpermitted parameters: :Title, :Text. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007f5358e1d040>, params: {"authenticity_token"=>"[FILTERED]", "post"=>{"Title"=>"Web Development", "Text"=>"HTML/CSS"}, "commit"=>"Create Post", "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+No template found for PostsController#create, rendering head :no_content
+Completed 204 No Content in 57ms (ActiveRecord: 9.5ms | Allocations: 12755)
+
+
