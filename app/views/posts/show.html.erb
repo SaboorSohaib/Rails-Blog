@@ -1,4 +1,3 @@
-<%content_for :title, "#{@user.name} | #{@post.title}"%>
 <%= render "user_post", post: @post %>
 <div>
   <%@post.comments.each do |comment|%>
