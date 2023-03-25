@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it ' Should test posts_counter to be >= 0' do
+  it 'Should test posts_counter to be >= 0' do
     expect(subject.posts_counter).to be >= 0
   end
 end
