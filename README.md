@@ -108,7 +108,7 @@ Clone this repository to your desired folder:
  - mkdir my-folder
  - cd my-folder
  - git clone git@github.com:SaboorSohaib/Rails-Blog.git
- - cd Blog-app
+ - cd Rails-Blog
  - bundle install
  - rails db:create
  - rails db:migrate
