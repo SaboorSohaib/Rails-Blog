@@ -24,7 +24,7 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it ' Should test comments_counter to be >= 0' do
+  it 'Should test comments_counter to be >= 0' do
     expect(subject.comments_counter).to be >= 0
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it ' Should test likes_counter to be >= 0' do
+  it 'Should test likes_counter to be >= 0' do
     expect(subject.likes_counter).to be >= 0
   end
 end
