@@ -2227,3 +2227,412 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 35ms (Views: 30.3ms | ActiveRecord: 1.3ms | Allocations: 4662)
 
 
+Started GET "/" for 127.0.0.1 at 2023-04-01 23:26:23 +0430
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:2
+  Rendered users/_user.html.erb (Duration: 1.9ms | Allocations: 496)
+  Rendered users/index.html.erb within layouts/application (Duration: 36.1ms | Allocations: 6102)
+  Rendered layout layouts/application.html.erb (Duration: 153.0ms | Allocations: 29451)
+Completed 200 OK in 180ms (Views: 150.1ms | ActiveRecord: 10.1ms | Allocations: 34728)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-04-01 23:26:27 +0430
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.5ms | Allocations: 106)
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 0.9ms | Allocations: 181)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 1.4ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 53.4ms | Allocations: 9206)
+  Rendered layout layouts/application.html.erb (Duration: 57.9ms | Allocations: 10336)
+Completed 200 OK in 71ms (Views: 51.2ms | ActiveRecord: 8.9ms | Allocations: 12946)
+
+
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:26:30 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 23.8ms | Allocations: 1593)
+  Rendered posts/show.html.erb within layouts/application (Duration: 26.3ms | Allocations: 1996)
+  Rendered layout layouts/application.html.erb (Duration: 26.8ms | Allocations: 2086)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 1.3ms | Allocations: 4280)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="main-div">
+  <div class="post-info">
+      <h3><%= post.title %> by <%=post.author_id%></h3>
+        <div>
+          <div>Comments: <%= post.comments_counter%></div>
+          <div>Likes: <%= post.likes_counter%></div>
+      </div>
+  </div>
+  <div><%= post.text %><div>
+  <%= form-with model: @like, url: like_path, method: :post do |f|%>
+    <%= f.submit "Like" %>
+  <%end%>
+</div>
+):
+1:    <div class="main-div">
+2:      <div class="post-info">
+3:          <h3><%= post.title %> by <%=post.author_id%></h3>
+4:            <div>
+5:              <div>Comments: <%= post.comments_counter%></div>
+6:              <div>Likes: <%= post.likes_counter%></div>
+7:          </div>
+8:      </div>
+9:      <div><%= post.text %><div>
+10:      <%= form-with model: @like, url: like_path, method: :post do |f|%>
+11:        <%= f.submit "Like" %>
+12:      <%end%>
+13:    </div>
+  
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/show.html.erb:1
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:27:25 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 3.0ms | Allocations: 1333)
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1718)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 1807)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.7ms | Allocations: 3491)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="main-div">
+  <div class="post-info">
+      <h3><%= post.title %> by <%=post.author_id%></h3>
+        <div>
+          <div>Comments: <%= post.comments_counter%></div>
+          <div>Likes: <%= post.likes_counter%></div>
+      </div>
+  </div>
+  <div><%= post.text %><div>
+  <%= form-with model: @like, url: like_path, method: :post do |f|%>
+    <%= f.submit "Like" %>
+  <%end%>
+</div>
+):
+1:    <div class="main-div">
+2:      <div class="post-info">
+3:          <h3><%= post.title %> by <%=post.author_id%></h3>
+4:            <div>
+5:              <div>Comments: <%= post.comments_counter%></div>
+6:              <div>Likes: <%= post.likes_counter%></div>
+7:          </div>
+8:      </div>
+9:      <div><%= post.text %><div>
+10:      <%= form-with model: @like, url: like_path, method: :post do |f|%>
+11:        <%= f.submit "Like" %>
+12:      <%end%>
+13:    </div>
+  
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/show.html.erb:1
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:28:02 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1228)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1321)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.0ms | Allocations: 3018)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= render "user_post", post: @post %>
+<div>
+  <%@post.comments.each do |comment|%>
+      <div>
+          <p>
+              <span><strong><% comment.author_id %>:</strong></span>
+              <span><% comment.text %></span>
+          </p>
+      </div>
+  <%end%>
+</div>
+
+<%= form_with model: @comment, url: user_post_path, method: :post, scope: :comment, do |f| %>
+  <div>
+    <%= f.text_area :text, placeholder: "Add Comment" %>
+    <%= f.submit "Comment" %>
+  </div>
+<% end %>
+):
+1:    <%= render "user_post", post: @post %>
+2:    <div>
+3:      <%@post.comments.each do |comment|%>
+4:          <div>
+5:              <p>
+6:                  <span><strong><% comment.author_id %>:</strong></span>
+7:                  <span><% comment.text %></span>
+8:              </p>
+9:          </div>
+10:      <%end%>
+11:    </div>
+12:    
+13:    <%= form_with model: @comment, url: user_post_path, method: :post, scope: :comment, do |f| %>
+14:      <div>
+15:        <%= f.text_area :text, placeholder: "Add Comment" %>
+16:        <%= f.submit "Comment" %>
+17:      </div>
+18:    <% end %>
+  
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+app/views/posts/show.html.erb:13: syntax error, unexpected `do' for block
+app/views/posts/show.html.erb:20: syntax error, unexpected `end'
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:28:46 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 1.8ms | Allocations: 1331)
+  Rendered posts/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1716)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 1805)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.0ms | Allocations: 3489)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="main-div">
+  <div class="post-info">
+      <h3><%= post.title %> by <%=post.author_id%></h3>
+        <div>
+          <div>Comments: <%= post.comments_counter%></div>
+          <div>Likes: <%= post.likes_counter%></div>
+      </div>
+  </div>
+  <div><%= post.text %><div>
+  <%= form-with model: @like, url: like_path, method: :post do |f|%>
+    <%= f.submit "Like" %>
+  <%end%>
+</div>
+):
+1:    <div class="main-div">
+2:      <div class="post-info">
+3:          <h3><%= post.title %> by <%=post.author_id%></h3>
+4:            <div>
+5:              <div>Comments: <%= post.comments_counter%></div>
+6:              <div>Likes: <%= post.likes_counter%></div>
+7:          </div>
+8:      </div>
+9:      <div><%= post.text %><div>
+10:      <%= form-with model: @like, url: like_path, method: :post do |f|%>
+11:        <%= f.submit "Like" %>
+12:      <%end%>
+13:    </div>
+  
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/_user_post.html.erb:10: syntax error, unexpected label, expecting `do' or '{' or '('
+app/views/posts/_user_post.html.erb:15: syntax error, unexpected `end'
+app/views/posts/show.html.erb:1
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:29:35 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 5.0ms | Allocations: 776)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/views/posts/show.html.erb:3
+  Rendered posts/show.html.erb within layouts/application (Duration: 61.6ms | Allocations: 14957)
+  Rendered layout layouts/application.html.erb (Duration: 66.7ms | Allocations: 16152)
+Completed 200 OK in 82ms (Views: 62.5ms | ActiveRecord: 9.9ms | Allocations: 17882)
+
+
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:31:37 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 1.7ms | Allocations: 415)
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/views/posts/show.html.erb:3
+  Rendered posts/show.html.erb within layouts/application (Duration: 7.3ms | Allocations: 1490)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 2450)
+Completed 200 OK in 18ms (Views: 11.3ms | ActiveRecord: 1.9ms | Allocations: 3708)
+
+
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:31:56 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 3.3ms | Allocations: 700)
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/views/posts/show.html.erb:3
+  Rendered posts/show.html.erb within layouts/application (Duration: 12.0ms | Allocations: 2105)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 3282)
+Completed 200 OK in 26ms (Views: 18.3ms | ActiveRecord: 1.6ms | Allocations: 4987)
+
+
+Started GET "/users/1/posts" for 127.0.0.1 at 2023-04-01 23:33:30 +0430
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 1.6ms | Allocations: 307)
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/posts/index.html.erb:3
+  Rendered posts/_post.html.erb (Duration: 0.9ms | Allocations: 163)
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 1], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:13
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 2], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:13
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 3], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:13
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 15)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."created_at" DESC LIMIT $2[0m  [["post_id", 4], ["LIMIT", 5]]
+  ↳ app/views/posts/index.html.erb:13
+  Rendered posts/index.html.erb within layouts/application (Duration: 35.3ms | Allocations: 6267)
+  Rendered layout layouts/application.html.erb (Duration: 41.1ms | Allocations: 7596)
+Completed 200 OK in 49ms (Views: 40.3ms | ActiveRecord: 4.4ms | Allocations: 8805)
+
+
+Started GET "/users/1.1" for 127.0.0.1 at 2023-04-01 23:33:54 +0430
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_user.html.erb (Duration: 0.6ms | Allocations: 138)
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/show.html.erb:10
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 16)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered users/show.html.erb within layouts/application (Duration: 10.9ms | Allocations: 1751)
+  Rendered layout layouts/application.html.erb (Duration: 15.2ms | Allocations: 2938)
+Completed 200 OK in 21ms (Views: 16.6ms | ActiveRecord: 1.1ms | Allocations: 4045)
+
+
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:33:58 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 3.4ms | Allocations: 667)
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/views/posts/show.html.erb:3
+  Rendered posts/show.html.erb within layouts/application (Duration: 14.6ms | Allocations: 2067)
+  Rendered layout layouts/application.html.erb (Duration: 19.3ms | Allocations: 3040)
+Completed 200 OK in 28ms (Views: 19.9ms | ActiveRecord: 1.4ms | Allocations: 4352)
+
+
+Started GET "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:34:43 +0430
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"1", "id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:7:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_user_post.html.erb (Duration: 3.9ms | Allocations: 700)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/views/posts/show.html.erb:3
+  Rendered posts/show.html.erb within layouts/application (Duration: 15.2ms | Allocations: 2069)
+  Rendered layout layouts/application.html.erb (Duration: 22.1ms | Allocations: 3246)
+Completed 200 OK in 34ms (Views: 24.7ms | ActiveRecord: 1.6ms | Allocations: 4952)
+
+
+Started POST "/users/1/posts/4" for 127.0.0.1 at 2023-04-01 23:35:11 +0430
+Processing by PostsController#create_comment as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"text"=>"Sdsa"}, "commit"=>"Comment", "user_id"=>"1", "id"=>"4"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:27:in `create_comment'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.7ms | Allocations: 1388)
+
+
+  
+NameError (undefined local variable or method `current_user' for #<PostsController:0x0000000000cbe8>):
+  
+app/controllers/posts_controller.rb:28:in `create_comment'

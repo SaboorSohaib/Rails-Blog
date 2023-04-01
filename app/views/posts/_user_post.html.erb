@@ -4,10 +4,10 @@
         <div>
           <div>Comments: <%= post.comments_counter%></div>
           <div>Likes: <%= post.likes_counter%></div>
-      </div>
+        </div>
   </div>
   <div><%= post.text %><div>
-  <%= form-with model: @like, url: like_path, method: :post do |f|%>
+  <%= form_with model: @like, url: like_path, method: :post do |f|%>
     <%= f.submit "Like" %>
   <%end%>
 </div>
